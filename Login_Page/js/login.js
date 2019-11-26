@@ -17,31 +17,40 @@ var objectUsers = [
 	}
 ]
 
+
 function checkUserinfo() {
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 
-	console.log("uname: " + username);
-
 	if (username == "") {
-		console.log("ASDFASDF");
 		loginText = "Missing username.";
 		document.getElementById("loginMessage").innerHTML = loginText;
 		return;
 	}
-
 	if (password == "") {
 		loginText = "Missing password.";
 		document.getElementById("loginMessage").innerHTML = loginText;
 		return;
 	}
 
-	for (i = 0; i < objectUsers.length; i++) {
-		if (username == objectUsers[i].username && password == objectUsers[i].password) {
-			console.log("USER FOUND");
-			window.location.replace("test.html");
+	axios.get('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/users')
+	.then(function (response) {
+		for (let i = 0; i < response.data.users.length; i++) {
+			if (username == response.data.users[i].username &&
+					password == response.data.users[i].password) {
+				window.location.replace("test.html");
+			}
+			console.log("username: " + response.data.users[i].username);
+			console.log("password: " + response.data.users[i].password);
 		}
-	}
+
+	})
+	.catch(function (error) {
+		loginText = "Error with server.";
+		document.getElementById("loginMessage").innerHTML = loginText;
+		console.log(error);
+		return;
+	});
 	loginText = "Wrong username or password.";
 	document.getElementById("loginMessage").innerHTML = loginText;
 }
