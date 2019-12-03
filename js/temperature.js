@@ -1,7 +1,6 @@
 function init() {
   window.setInterval(function() {
     getTemperature();
-    seconds++;
   }, 3000);
 }
 
@@ -10,10 +9,10 @@ function getTemperature() {
 	.then(function (response) {
     var temperatureText = response.data[0].currentTemperature;
     if (temperatureText > 0) {
-      temperatureText = "+" + temperatureText;
+      temperatureText = temperatureText + "°";
     }
     else if (temperatureText < 0) {
-      temperatureText = "-" + temperatureText;
+      temperatureText = "-" + temperatureText + "°";
     }
     document.getElementById("roomTemperature").innerText = temperatureText;
   })

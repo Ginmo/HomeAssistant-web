@@ -9,10 +9,6 @@ function weatherBalloon() {
   });
 }
 
-window.onload = function() {
-  weatherBalloon();
-}
-
 function drawWeather( d ) {
    var celcius = Math.round(parseFloat(d.main.temp)-273.15);
 
@@ -22,4 +18,9 @@ function drawWeather( d ) {
 
    var picurl = 'https://openweathermap.org/img/wn/' + d.weather[0].icon + '.png';
    document.getElementById('picurl').src = picurl;
+}
+
+window.onload = function() {
+  weatherBalloon();
+  getLights();
 }
