@@ -1,6 +1,5 @@
 function init() {
   window.setInterval(function() {
-    getLights();
     postLights();
   }, 1000);
 }
