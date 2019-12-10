@@ -35,9 +35,6 @@ function postLights() {
 
   axios.post('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/lights',
     {"lightstatus": lightVal})
-    .then(function (response) {
-      console.log(response);
-    })
     .catch(function (error) {
   		console.log(error);
   		return;
