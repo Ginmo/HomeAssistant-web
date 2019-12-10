@@ -20,7 +20,5 @@ function drawWeather( d ) {
    document.getElementById('picurl').src = picurl;
 }
 
-window.onload = function() {
-  weatherBalloon();
-  getLights();
-}
+
+weatherBalloon();
